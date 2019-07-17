@@ -9,6 +9,7 @@ var browserSync = require('browser-sync').create()
 // images
 var imagemin = require("gulp-imagemin")
 var concat  = require("gulp-concat")
+var ghPages = require("gh-pages")
 
 
 gulp.task("postCss", function() {
@@ -75,7 +76,9 @@ gulp.task("watch", function() {
   gulp.watch("src/img/*", ["images"])
 })
 
-
+gulp.task('deploy', function() {
+  ghPages.publish("dist")
+})
 
 // will run the "sass" function above,  so we can associate many functions with the default
 gulp.task('default', ["postCss", "watch", "html", "fonts", "images"])
